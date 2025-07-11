@@ -10,9 +10,8 @@ body, html, #root {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   background-color: #36393F;
   color: #DCDDDE;
+  overflow: hidden; /* changed from auto to prevent unwanted scroll */
   display: flex;
-  flex-direction: row;
-  overflow: auto;
 }
 
 /* Root layout */
@@ -21,7 +20,7 @@ body, html, #root {
   flex-direction: row;
   height: 100vh;
   width: 100vw;
-  overflow: auto;
+  overflow: hidden;
 }
 
 /* Sidebar styles */
@@ -66,16 +65,12 @@ body, html, #root {
 .server-icon:hover {
   border-radius: 16px;
 }
-.main{
-
+.main {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  
-  
-
-
-
+  flex: 1;
+  height: 100vh; /* added */
+  overflow: hidden; /* prevent overflow */
 }
 
 .title{
@@ -130,10 +125,11 @@ body, html, #root {
 
 /* Main chat area */
 .chat {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  background: #36393F;
+  flex: 1;
+  min-height: 0; /* important to prevent flex overflow */
+  overflow: hidden;
 }
 .chat-header {
   height: 60px;
@@ -149,9 +145,10 @@ body, html, #root {
 }
 .chat-messages {
   
-  padding: 20px;
   overflow-y: auto;
-  flex: 1;
+  padding: 20px;
+  min-height: 0;
+  height: 575px;
 }
 .chat-input {
   height: 60px;
@@ -159,6 +156,7 @@ body, html, #root {
   display: flex;
   align-items: center;
   padding: 0 20px;
+  
  
   
   gap: 12px;

@@ -1,13 +1,13 @@
 import React, { use, useState } from 'react';
 import './App.css';
+import Login from './login';
 
+const MainPage: React.FC = () => {
 
-
-const App: React.FC = () => {
-    
-     const [add,setAdd] = useState<string[]>([]);
+  const [add,setAdd] = useState<string[]>([]);
 
      const [message,setMessage] = useState<string[]>([])
+     
 
 
      const enterKey = (event: React.KeyboardEvent<HTMLInputElement>,keyInput:string) => {
@@ -85,8 +85,49 @@ const App: React.FC = () => {
            
 
         </div>
+  )
+}
+
+
+
+const App: React.FC = () => {
+
+  const [userData,setUser] = useState<String>()
+  const [isLoggedin,setLogin] = useState<boolean>(true)
+
+  const loggedIn = (userData:String) => {
+    setUser(userData)
+    setLogin(true)
+  }
+
+
+
   
-);
+
+
+
+  return(
+    <>
+
+    {
+      (isLoggedin!)?(
+        <Login onlogin={loggedIn}></Login>
+      ):(
+        <App></App>
+      )
+
+    }
+    
+    
+    
+    </>
+    
+    
+  )
+    
+     
+  
+
 }
 
 export default App;
