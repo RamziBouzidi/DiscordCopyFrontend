@@ -1,26 +1,18 @@
 import React, { use, useState } from 'react';
 import './App.css';
 import Login from './login';
+import Chat from './chat'
+
 
 const MainPage: React.FC = () => {
 
   const [add,setAdd] = useState<string[]>([]);
+  const [activeSection,setActiveSection] = useState<String>("Online")
+  
 
-     const [message,setMessage] = useState<string[]>([])
-     
+  
 
-
-     const enterKey = (event: React.KeyboardEvent<HTMLInputElement>,keyInput:string) => {
-
-      if (event.key == 'Enter'){
-
-        setMessage([...message,keyInput]);
-
-
-
-      }
-
-     }
+    
     return (
         <div className="main">
             <div className='title'>
@@ -52,32 +44,56 @@ const MainPage: React.FC = () => {
 
     </aside>
 
+    
+
     <aside className="sidebar channels">
       <div className="channels-header">
         <span className="channel-tag">Direct Messages</span>
         <button className="add-dm">+</button>
       </div>
       <div className="friends-list">
-        <div className="friend">Alice</div>
-        <div className="friend">Bob</div>
-        <div className="friend">Charlie</div>
+        <div className="friend" onClick={() => setActiveSection("type")}>
+          <div className='imageFriend'>
+            <img src="malek.png"></img>
+          </div>
+          <p>malek24996</p>
+        </div>
+        <div className="friend">
+          <div className='imageFriend'>
+            <img src="malek.png"></img>
+          </div>
+          <p>malek24996</p>
+        </div>
+        <div className="friend">
+          <div className='imageFriend'>
+            <img src="malek.png"></img>
+          </div>
+          <p>malek24996</p>
+        </div>
       </div>
     </aside>
 
+
+
     <main className="chat">
       <header className="chat-header">
-        <div className="chat-title">Select a DM</div>
+        <button className="header-button" onClick={() => setActiveSection("Home")}>Online</button>
+        <button className="header-button">Add Friend</button>
       </header>
-      <div className="chat-messages">
-          {message.map((message, index) => (
-          <div className="chatText" key={index}>{message}</div>
-           ))}
-      </div>
-      <div className="chat-input">
-        <button className="btn-emoji">😊</button>
-        <input className="input-message" placeholder="Message #alice-and-bob" onKeyDown={(e) => enterKey(e,e.currentTarget.value)} />
-        <button className="btn-upload">📎</button>
-      </div>
+
+      {(activeSection) === 'Home' && (
+
+        <div></div>
+      )}
+      {(activeSection) === 'type' && (
+
+        <Chat></Chat>
+      )}
+      
+      
+
+      
+
     </main>
   </div>
             </div>
@@ -93,7 +109,7 @@ const MainPage: React.FC = () => {
 const App: React.FC = () => {
 
   const [userData,setUser] = useState<String>()
-  const [isLoggedin,setLogin] = useState<boolean>(true)
+  const [isLoggedin,setLogin] = useState<boolean>(false)
 
   const loggedIn = (userData:String) => {
     setUser(userData)
@@ -110,10 +126,10 @@ const App: React.FC = () => {
     <>
 
     {
-      (isLoggedin!)?(
+      (!isLoggedin)?(
         <Login onlogin={loggedIn}></Login>
       ):(
-        <App></App>
+        <MainPage></MainPage>
       )
 
     }

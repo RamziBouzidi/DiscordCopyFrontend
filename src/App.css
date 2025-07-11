@@ -8,10 +8,26 @@ body, html, #root {
   height: 100%;
   width: 100%;
   font-family: 'Helvetica Neue', Arial, sans-serif;
-  background-color: #36393F;
+  background-color: #202225;
   color: #DCDDDE;
+  
   overflow: hidden; /* changed from auto to prevent unwanted scroll */
   display: flex;
+}
+
+.imageFriend {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%; /* Makes it circular */
+  overflow: hidden; /* Hides parts of image outside circle */
+ 
+  
+}
+
+.imageFriend img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers the circle properly */
 }
 
 /* Root layout */
@@ -23,8 +39,11 @@ body, html, #root {
   overflow: hidden;
 }
 
+
+
 /* Sidebar styles */
 .sidebar {
+  
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -78,12 +97,17 @@ body, html, #root {
 
   
 }
+
+
 /* Channels / Direct messages pane */
 .channels {
   width: 240px;
-  background: #2F3136;
+  background: #202225;
   padding: 16px;
+  
 }
+
+
 .channels-header {
   display: flex;
   align-items: center;
@@ -117,7 +141,10 @@ body, html, #root {
   padding: 8px 12px;
   border-radius: 4px;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
   transition: background .2s;
+  gap: 12px;
 }
 .friend:hover {
   background: #393C43;
@@ -125,19 +152,63 @@ body, html, #root {
 
 /* Main chat area */
 .chat {
+  
   display: flex;
   flex-direction: column;
   flex: 1;
   min-height: 0; /* important to prevent flex overflow */
   overflow: hidden;
+  background-color: #393C43;
+  
+  
 }
+
 .chat-header {
-  height: 60px;
-  background: #2F3136;
+  height: 48px;
+  background: #36393f;
+  border-bottom: 1px solid #202225;
   display: flex;
   align-items: center;
+  padding: 0 16px;
+  row-gap: 20px;
+  
+}
+.title{
+  background-color: #202225;
+}
+
+
+.header-button {
+  background: transparent;
+  border: none;
+  padding: 20px 30px;
+  margin: 20px;
+  border-radius: 21px;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  
+  
+  color: #b9bbbe;
+  transition: background 0.15s ease;
+}
+
+.header-button:hover {
+  background: #40444b;
+  color: #dcddde;
+}
+
+
+.chatOutsideInput{
+
   padding: 0 20px;
-  border-bottom: 1px solid #202225;
+
+
 }
 .chat-title {
   font-size: 16px;
@@ -149,6 +220,14 @@ body, html, #root {
   padding: 20px;
   min-height: 0;
   height: 575px;
+  display: flex;
+  flex-direction: column-reverse;
+  
+}
+
+.chat-message-main{
+  display: flex;
+  flex-direction: column-reverse;
 }
 .chat-input {
   height: 60px;
@@ -156,6 +235,7 @@ body, html, #root {
   display: flex;
   align-items: center;
   padding: 0 20px;
+  border-radius: 21px;
   
  
   
